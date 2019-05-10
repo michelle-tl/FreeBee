@@ -4,9 +4,10 @@ const countries = require('countries-list');
 const cities    = require('all-the-cities');
 const interrail = require('interrail');
 const async     = require('async');
+const fs        = require('fs');
 
 // Sort out very small cities.
-const CITY_MIN_POPULATION = 500000;
+const CITY_MIN_POPULATION = 50000;
 
 const europeanCountryCodes =
     Object.entries(countries.countries)
@@ -30,4 +31,7 @@ const queries = europeanCities.map((city) =>
            })
           );
 
-async.parallel(queries, (err, res) => console.log(res));
+async.parallel(queries, (err, res) => fs.writeFile("Stations.json", JSON.stringify(res), err =>
+                                                   { if (err) console.log(err);
+                                                     else console.log("Saved file");
+                                                   }));

@@ -1,3 +1,7 @@
+// Sort out very small cities.
+const CITY_MIN_POPULATION = 200000;
+const STATIONS_FILE_NAME  = "Stations.json";
+
 // Pre-computes the graph of all major european cities and the train net between them.
 
 const countries = require('countries-list');
@@ -5,10 +9,6 @@ const cities    = require('all-the-cities');
 const interrail = require('interrail');
 const async     = require('async');
 const fs        = require('fs');
-
-// Sort out very small cities.
-const CITY_MIN_POPULATION = 500000;
-const STATIONS_FILE_NAME   = "Stations.json";
 
 // A list of all country codes in Europe, e.g., SE for Sweden.
 const europeanCountryCodes =

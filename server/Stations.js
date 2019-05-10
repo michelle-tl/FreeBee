@@ -8,11 +8,12 @@ const fs        = require('fs');
 
 // Sort out very small cities.
 const CITY_MIN_POPULATION = 50000;
+const STATIONS_FILE_NAME   = "Stations.json";
 
 // A list of all country codes in Europe, e.g., SE for Sweden.
 const europeanCountryCodes =
     Object.entries(countries.countries)
-      .filter(([k, v]) => v.continent == 'EU')
+      .filter(([k, v]) => v.continent === 'EU')
       .map(([k, _]) => k);
 
 // A list of all cities in Europe (with some extra data). Cities with small
@@ -40,7 +41,11 @@ const queries = europeanCities.map((city) =>
            })
           );
 
-async.parallel(queries, (err, res) => fs.writeFile("Stations.json", JSON.stringify(res), err =>
+async.parallel(queries, (err, res) => {
+    // Get rid of searches that gave no result.
+    res = res.filter(s => Object.entries(s).length > 0);
+    fs.writeFile(STATIONS_FILE_NAME, JSON.stringify(res), err =>
                                                    { if (err) console.log(err);
                                                      else console.log("Saved file");
-                                                   }));
+                                                   });
+});

@@ -13,7 +13,7 @@ const STATIONS_FILE_NAME   = "Stations.json";
 // A list of all country codes in Europe, e.g., SE for Sweden.
 const europeanCountryCodes =
     Object.entries(countries.countries)
-      .filter(([k, v]) => v.continent === 'EU')
+      .filter(([_, v]) => v.continent === 'EU')
       .map(([k, _]) => k);
 
 // A list of all cities in Europe (with some extra data). Cities with small

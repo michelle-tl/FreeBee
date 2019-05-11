@@ -3,3 +3,7 @@
   width: 100%;
   height: 40px;
 }
+.Card-header {
+        width: 100%;
+        height: 100%;
+    }

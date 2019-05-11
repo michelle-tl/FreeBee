@@ -79,6 +79,10 @@ module.exports.initialSuggestions = (from, to, _travelGraph) => {
 
 // Strengthen good connections, produce new suggestions.
 // Will modify acoGraph and preferencesMap.
-module.exports.iterateSuggestions = (chosenPath, acoGraph, preferencesMap) => {
-    return [chosenPath, chosenPath, chosenPath];
+module.exports.getSuggestions = (from, to, acoGraph, preferencesMap) => {
+    return [[from,to]];
+};
+
+module.exports.updateGraphs = (chosenPath, acoGraph, preferencesMap) => {
+    ;
 };

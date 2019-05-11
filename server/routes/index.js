@@ -39,7 +39,7 @@ router.post('/iterate', (req, res) => {
   const from = plan[0].place;
   const to = plan[plan.length - 1].place;
   // const timeMinutes = travelTimeOf(departure, arrival);
-  const timeMinutes = plan.map(trip => trip.travelMins).reduce((a, b) => a + b, 0);
+  const timeMinutes = 100000;
   const travelGraph = travelGraphOf(baseGraph);
 
   updateGraphs(plan, acoGraph, null);

@@ -4,6 +4,7 @@ const NUM_SUGGESTIONS = 3;
 // TODO: Tweak this.
 const PHEROMONE_ADD_AMOUNT = 0.2;
 const MAX_PHEROMONE = 1;
+const MIN_PHEROMONE = 0.1;
 const EVAPORATION_RATE = 0.5;
 
 function dijkstraResToPath(res, from, to) {
@@ -168,6 +169,7 @@ module.exports.updateGraphs = (chosenPath, acoGraph, preferencesMap) => {
     let currentPheromone = acoGraph.edge(from, to);
     let newPheromone = currentPheromone + PHEROMONE_ADD_AMOUNT;
     newPheromone = newPheromone > MAX_PHEROMONE ? MAX_PHEROMONE : newPheromone;
+    newPheromone = newPheromone < MIN_PHEROMONE ? MIN_PHEROMONE : newPheromone;
     acoGraph.setEdge(from, to, newPheromone);
   }
 

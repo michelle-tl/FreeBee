@@ -1,6 +1,7 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
+const bodyParser = require('body-parser');
 //var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 //const memoryCache = require('memory-cache');
@@ -11,7 +12,8 @@ var app = express();
 
 app.use(logger('dev'));
 app.use(express.json());
-//app.use(express.urlencoded({ extended: false }));
+// app.use(bodyParser);
+app.use(express.urlencoded({ extended: false }));
 //app.use(cookieParser());
 
 app.use('/', indexRouter);
@@ -22,7 +24,7 @@ app.use(function(req, res, next) {
 });
 
 // error handler
-app.use(function (err, req, res, next) {
+app.use(function(err, req, res, next) {
   console.error(err.stack);
   res.status(500).send('Error');
 });
@@ -30,7 +32,7 @@ app.use(function (err, req, res, next) {
 const PORT = 5000;
 
 app.listen(PORT, () => {
-  console.log(`server running on port ${PORT}`)
+  console.log(`server running on port ${PORT}`);
 });
 
 module.exports = app;

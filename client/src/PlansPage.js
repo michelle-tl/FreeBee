@@ -39,6 +39,9 @@ console.log(plans);
           <TitleComponent/>
           <NewSearchComponent/>
           <SuggestionsComponent/>
+          <Button variant="secondary">
+            <a href='/page_3'>Next Page</a>
+            </Button>
         </Container>
     </div>
   )

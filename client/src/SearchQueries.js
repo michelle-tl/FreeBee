@@ -18,6 +18,9 @@ const SearchQueries = (props) => {
           <Button variant="primary" className="button-primary-color">
             {props.query.startDate} -  {props.query.endDate}
           </Button>
+          <Button variant="primary" className="button-primary-color">
+            {props.query.nbrTravellers} Travellers
+          </Button>
         </div>
   );
 }

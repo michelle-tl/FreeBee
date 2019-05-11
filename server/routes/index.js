@@ -11,7 +11,8 @@ router.get('/', function(req, res) {
     .send('Incorrect endpoint, please use either /initiate or /iterate!');
 });
 router.post('/initiate', (req, res) => {
-  const { from, to } = req.query;
+  const { from, to } = req.body;
+  console.log(req);
 
   if (from && to) {
     res.json({

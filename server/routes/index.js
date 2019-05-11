@@ -22,7 +22,6 @@ router.post('/initiate', (req, res) => {
     const plans = initialSuggestions(from, to, travelGraph);
     res.json({
       graph: acoGraphOf(baseGraph, 0.5),
-      // travelGraph,
       plans,
       departure,
       arrival
@@ -34,9 +33,11 @@ router.post('/initiate', (req, res) => {
 
 router.post('/iterate', (req, res) => {
   const { plan, graph, departure, arrival } = req.body;
+
   const from = plan[0].place;
   const to = plan[plan.length - 1].place;
-  const timeMinutes = travelTimeOf(departure, arrival);
+  // const timeMinutes = travelTimeOf(departure, arrival);
+  const timeMinutes = plan.map(trip => trip.travelMins).reduce((a, b) => a + b, 0);
   const travelGraph = travelGraphOf(baseGraph);
 
   updateGraphs(plan, graph, null);

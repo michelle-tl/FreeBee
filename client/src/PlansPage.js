@@ -47,13 +47,9 @@ console.log(plans);
 
 const TitleComponent = () =>{
   return(
-    <div class="Title">
-      <Row className='primar-color'>
-        <h1>Some awsome travel plans.</h1>
-      </Row>
-      <Row >
+    <div class="title">
+        <h1 class="primar-color">Some awsome travel plans.</h1>
         <h4>Are you ready for your adventure?!</h4>
-      </Row>
     </div>
   )
 }
@@ -61,11 +57,9 @@ const TitleComponent = () =>{
 const NewSearchComponent = () =>{
     return(
     <div class="NewSearch">
-      <Row>
-        <div className='ml-auto mr-3'>text with button -- right
+        <div className="">Didn't find a journey of your dreams?</div>
+        <div className=''>No worries!</div>
         <Button className='button-primary-color'>Give me more!</Button>
-        </div>
-      </Row>
     </div>
     )
 }

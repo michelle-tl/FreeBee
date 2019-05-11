@@ -23,8 +23,8 @@ const Page_2 = (props) => {
          const data = {from:'Stockholm', to:'Gothenburg'};
          const res = await axios.post(initUrl, data)
 
-         //const res_plans = res.data.plans;
-         console.log(res.data);
+         const res_plans = res.data.plans;
+         console.log(res_plans);
          //setPlans({ res_plans });
      };
        fetchData();
@@ -36,10 +36,10 @@ console.log(plans);
       <div class="plans-container">
         <SearchQueries></SearchQueries>
         <Container>
-          <Row>
+          <Row className='primar-color'>
             <h1>Some awsome travel plans.</h1>
           </Row>
-          <Row>
+          <Row >
             <h4>Are you ready for your adventure?!</h4>
           </Row>
           <Row>
@@ -56,12 +56,13 @@ console.log(plans);
         </Container>
       </div>
   )
-
 }
 
 const NewSearchComponent = () =>{
     return(
-    <div>text with button -- right</div>
+    <div className='ml-auto mr-3'>text with button -- right
+    <Button className='button-primary-color'>Give me more!</Button>
+    </div>
     )
 }
 /*

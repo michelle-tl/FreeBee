@@ -36,6 +36,6 @@
   border-color: #FFA500 !important;
 }
 
-.more-alternatives-component{
-    float: right;
+.alight-content-center{
+    align-content: center;
 }

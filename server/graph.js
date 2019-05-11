@@ -38,7 +38,7 @@ function travelGraphOf(baseGraph) {
       travelGraph.setEdge(
         from,
         to,
-        travelTimeOf(byTrip.departure, byTrip.arrival)
+        travelTimeOf(byTrip[0].departure, byTrip[byTrip.length - 1].arrival)
       )
     )
   );

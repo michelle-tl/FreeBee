@@ -24,15 +24,12 @@ crossorigin="anonymous"/>
     <div className='App'>
         <div className='header'>
             <nav>
-                <ul>
+                <ul class="nav-header">
                     <li>
-                    About
+                    ABOUT
                     </li>
                     <li>
-                    Settings
-                    </li>
-                    <li>
-                     Login
+                    MY PROFILE
                     </li>
                 </ul>
             </nav>

@@ -10,13 +10,12 @@ const Page_2 = () => {
   return (
       <div>Plans page
         <Button variant="primary">
-            <Link to={{
-              pathname: '/page_3',
-              state: {
-                plan: 'paris'
-              }
-            }}>Buy Plan
-            </Link>
+        <Link
+            to={{
+            pathname: "/page_3",
+            state: {plan: 'paris'} // your data array of objects
+            }}
+            >Buy</Link>
         </Button>
       </div>
   );

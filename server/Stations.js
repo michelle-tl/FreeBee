@@ -1,6 +1,6 @@
 // Sort out very small cities.
-const CITY_MIN_POPULATION = 360000;
-const STATIONS_FILE_NAME  = "Stations.json";
+const CITY_MIN_POPULATION = 310000;
+    const STATIONS_FILE_NAME  = "Stations.json";
 
 // Pre-computes the graph of all major european cities and the train net between them.
 

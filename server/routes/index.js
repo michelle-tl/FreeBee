@@ -2,8 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 const { initialSuggestions } = require('../Suggester.js');
-const { graph } = require('../ExampleGraph.js');
-// const graph = require('../graph.js');
+const { baseGraph, travelGraphOf, acoGraphOf } = require('../graph.js');
 
 router.get('/', function(req, res) {
   res
@@ -12,28 +11,16 @@ router.get('/', function(req, res) {
 });
 router.post('/initiate', (req, res) => {
   const { from, to } = req.body;
-  console.log(req);
+  // console.log(req);
 
   if (from && to) {
+    const travelGraph = travelGraphOf(baseGraph);
+
+    const plans = initialSuggestions(from, to, travelGraph);
     res.json({
-      graph: {},
-      plans: [
-        {
-          place: 'Stockholm',
-          travelMinutes: '120',
-          stayMinutes: '60'
-        },
-        {
-          place: 'Halsberg',
-          travelMinutes: '100',
-          stayMinutes: '30'
-        },
-        {
-          place: 'Gothenburg',
-          travelMinutes: '150',
-          stayMinutes: '40'
-        }
-      ]
+      graph: acoGraphOf(baseGraph, 0.5),
+      travelGraph,
+      plans
     });
   } else {
     res.json({ error: "Incorrect parameters, need 'from' and 'to'" });

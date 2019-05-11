@@ -65,7 +65,7 @@ const Page_2 = (props) => {
 
           const items_0 = []
           for (const [index, value] of plan_0.entries()) {
-            items_0.push(<li key={index}>{value.place}</li>)
+            items_0.push(<TravelItem place={value.place}/>)
           }
           const items_1 = []
           for (const [index, value] of plan_1.entries()) {
@@ -88,7 +88,7 @@ const Page_2 = (props) => {
                     <Row>
                     <Col>
                       <Button size="sm" onClick={(e) => handleIteration(e, plan_0)}>Explore similar</Button>
-                      <div><ul>{items_0}</ul></div>
+                      <div>{items_0}</div>
                     </Col>
                     <Col>
                       <Button size="sm">Explore similar</Button>

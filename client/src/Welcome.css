@@ -1,5 +1,5 @@
 .welcome-container {
-  background: url(images/welcome.jpg) no-repeat center center fixed; 
+  background: url(images/welcome.jpg);
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;

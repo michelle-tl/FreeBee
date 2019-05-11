@@ -24,8 +24,8 @@ const Page_2 = (props) => {
          const res = await axios.post(initUrl, data)
 
          const res_plans = res.data.plans;
-         console.log(res_plans);
-         //setPlans({ res_plans });
+         //console.log(res_plans);
+         setPlans(res_plans);
      };
        fetchData();
      }, []);
@@ -38,7 +38,7 @@ console.log(plans);
         <Container>
           <TitleComponent/>
           <NewSearchComponent/>
-          <SuggestionsComponent/>
+          <SuggestionsComponent plans={plans}/>
         </Container>
     </div>
   )
@@ -69,22 +69,31 @@ const NewSearchComponent = () =>{
     )
 }
 
-const SuggestionsComponent = () => {
-  return (
-    <div class="Suggestions">
-    <Row>
-      <div> So this is your cup of tea? We have more that came from! </div>
-    </Row>
-    <div>
+const SuggestionsComponent = (props) => {
+
+    if (props.plans) {
+        console.log(props.plans);
+
+        return (
+      <div class="Suggestions">
       <Row>
-      <Col>1 of 3</Col>
-      <Col>2 of 3</Col>
-      <Col>3 of 3</Col>
+        <div> So this is your cup of tea? We have more that came from! </div>
       </Row>
+      <div>
+        <Row>
+        <Col>{}</Col>
+        <Col>{}</Col>
+        <Col>{}</Col>
+        </Row>
+      </div>
     </div>
-  </div>
-  )
+    );
 }
+return <div/>;
+
+}
+
+
 /*
 <div>Plans page
   <Button variant="primary">

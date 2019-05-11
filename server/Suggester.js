@@ -112,9 +112,8 @@ module.exports.getSuggestions = (
         .reduce((a, b) => a + b, 0);
       let probAcc = 0;
       let rand = Math.random();
-      let j = 1;
+      let j = 0;
       while (rand >= probAcc) {
-        if (j == pheromones.length) break;
         probAcc += pheromones[j].ph / totalPheromones;
         j++;
       }

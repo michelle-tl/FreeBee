@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
+const { initialSuggestions } = require('../Suggester.js');
+const { graph } = require('../ExampleGraph.js');
 // const graph = require('../graph.js');
 
 router.get('/', function(req, res) {
@@ -8,8 +10,9 @@ router.get('/', function(req, res) {
     .status(200)
     .send('Incorrect endpoint, please use either /initiate or /iterate!');
 });
-router.get('/initiate', (req, res) => {
+router.post('/initiate', (req, res) => {
   const { from, to } = req.query;
+
   if (from && to) {
     res.json({
       graph: {},

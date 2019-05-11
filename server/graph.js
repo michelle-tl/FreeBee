@@ -34,13 +34,21 @@ function travelGraphOf(baseGraph) {
 
   // Set all edges with travel times
   Object.entries(baseGraph).forEach(([from, v]) =>
-    v.forEach(({ to, byTrip }) =>
+    v.forEach(({ to, byTrip }) => {
+      let departure, arrival;
+      if (byTrip.length) {
+        departure = byTrip[0].departure;
+        arrival = byTrip[byTrip.length-1].arrival;
+      } else {
+        departure = byTrip.departure;
+        arrival = byTrip.arrival;
+      }
       travelGraph.setEdge(
         from,
         to,
-        travelTimeOf(byTrip[0].departure, byTrip[byTrip.length - 1].arrival)
-      )
-    )
+        travelTimeOf(departure, arrival)
+      );
+    })
   );
   return travelGraph;
 }

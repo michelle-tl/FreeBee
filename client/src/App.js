@@ -23,6 +23,7 @@ integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJ
 crossorigin="anonymous"/>
     <div className='App'>
         <div className='header'>
+        <div class="logo"></div>
             <nav>
                 <ul class="nav-header">
                     <li>

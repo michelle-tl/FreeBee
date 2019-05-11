@@ -85,8 +85,8 @@ const Page_1 = () => {
               to={{
               pathname: "/page_2",
               state: { 
-                cityFrom: cityFrom,
-                cityTo: cityTo,
+                cityFrom: 'Barcelona',
+                cityTo: 'London',
                 startDate: startDate.toLocaleDateString("en-US"),
                 endDate: endDate.toLocaleDateString("en-US"),
                 nbrTravellers: nbrTravellers,

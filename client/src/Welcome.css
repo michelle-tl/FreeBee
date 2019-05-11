@@ -1,0 +1,61 @@
+.welcome-container {
+  background: url(images/welcome.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.form{
+  position: absolute;
+  background-color: white;
+  padding: 3%;
+  border-radius: 5%;
+  top: 20%;
+  left: 15%;
+  width: 25%;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+.form form{
+  display: flex;
+  flex-direction: column;
+}
+.form .form-input{
+  display: flex;
+  flex-direction: column;
+}
+
+.form .form-date{
+  display: flex;
+  flex-direction: row;
+}
+
+.form .form-date div {
+  margin-right: 6px;
+}
+.form h2{
+  color: #FFA500;
+  font-size: 2.5em;
+}
+
+.form .btn-primary{
+  border-radius: 50px;
+  background-color: #FFA500 !important;
+  border-color: #FFA500 !important;
+  width: 100px;
+  align-self: flex-end;
+}
+
+.form .btn-primary:hover{
+  background-color: #fec356 !important;
+  border-color: #fec356 !important;
+}
+
+.react-datepicker__input-container input{
+  width: 120px;
+  padding: 7px;
+}

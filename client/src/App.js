@@ -34,11 +34,9 @@ crossorigin="anonymous"/>
                 </ul>
             </nav>
         </div>
-    <div>
     <Route path="/" exact component={Page_1} />
     <Route path="/page_2/" component={Page_2} />
     <Route path="/page_3/" component={Page_3} />
-    </div>
     </div>
     </Router>
   );

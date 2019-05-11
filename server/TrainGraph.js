@@ -5,6 +5,7 @@ const RETRY_RESULTLESS = false;
 const fs        = require('fs');
 const interrail = require('interrail');
 const async     = require('async');
+const Graph     = require('@dagrejs/graphlib').Graph;
 
 
 const stationsDict = JSON.parse(fs.readFileSync("Stations.json"));
@@ -59,7 +60,7 @@ try {
 // Stockholm: 9900009
 
 const queries = [];
-var journeyOptions = {results: 1, transfers: 0, when: DEPARTURE_DATE};
+const journeyOptions = {results: 1, transfers: 0, when: DEPARTURE_DATE};
 for (let i = 0; i < stations.length; i++) {
     let from   = stations[i].station.name;
     let fromId = stations[i].station.id;
@@ -133,6 +134,5 @@ async.parallel(queries, (err, res) => {
                  });
 });
 
-// TODO: Make a stations dict with IDs as keys.
 // TODO: loop over all queries, see which ones gave some result (no transfers), put in graph.
 

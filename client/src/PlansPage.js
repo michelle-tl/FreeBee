@@ -4,6 +4,7 @@ import {Container, Row, Col} from 'react-bootstrap';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import './Plans.css';
 import SearchQueries from './SearchQueries.js';
+import TravelItem from './TravelItem'
 
 import axios from 'axios';
 //axios.defaults.withCredentials = true;
@@ -24,8 +25,8 @@ const Page_2 = (props) => {
          const res = await axios.post(initUrl, data)
 
          const res_plans = res.data.plans;
-         console.log(res_plans);
-         //setPlans({ res_plans });
+         //console.log(res_plans);
+         setPlans({res_plans});
      };
        fetchData();
      }, []);
@@ -89,9 +90,16 @@ const SuggestionsComponent = () => {
       </Col>
       </Row>
     </div>
-  </div>
-  )
+    </div>
+    );
 }
+/*
+
+{thePlans.map((currentPlan, index) => {
+  return <li><TravelItem plan={currentPlan}/></li>
+})}
+*/
+
 /*
 <div>Plans page
   <Button variant="primary">

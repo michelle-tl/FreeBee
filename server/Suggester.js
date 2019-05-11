@@ -63,7 +63,8 @@ module.exports.initialSuggestions = (from, to, _travelGraph) => {
     const dijkstra = graphy.alg.dijkstra(
       travelGraphCopy,
       from,
-      eId => travelGraphCopy.edge(eId).minutes
+      eId => travelGraphCopy.edge(eId),
+      eId => travelGraphCopy.edges(eId)
     );
     let suggestion;
     try {

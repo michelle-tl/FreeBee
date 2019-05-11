@@ -14,6 +14,8 @@ const stations = Object.values(stationsDict);
 // graph.
 const DEPARTURE_DATE = new Date("2019-06-10T10:30:00+02:00");
 
+// CACHE RELOAD.
+
 // Load the existing graph: We want to extend it!
 const graph = JSON.parse(fs.readFileSync(GRAPH_FILE_NAME));
 
@@ -21,7 +23,7 @@ const graph = JSON.parse(fs.readFileSync(GRAPH_FILE_NAME));
 const stationIds = Object.values(stationsDict).map(c => c.station.id);
 // Initially empty lists.
 
-console.log("GRAPH: ")
+console.log("GRAPH: ");
 console.log(graph);
 
 // Record successful queries, so we don't need to redo them.
@@ -48,6 +50,8 @@ try {
     }
 }
 
+
+// QUERIES.
 
 // Malmo to Lund, example:
 // interrail.journeys("7402485", "7402611", {results: 1, transfers: 0, when: DEPARTURE_DATE}).then(console.log)
@@ -97,6 +101,8 @@ for (let i = 0; i < stations.length; i++) {
             }));
     }
 }
+
+// SAVE RESULTS.
 
 async.parallel(queries, (err, res) => {
     console.log("All search results: ");

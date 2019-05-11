@@ -44,6 +44,7 @@ try {
         // Put all existing edges in successes file.
         graph[graphKeys[i]].map(edge => {
             let trip = edge.byTrip;
+            // TODO: Fix, this is broken now.
             let other = trip.origin.name == graphKeys[i] ? trip.destination.name : graphKeys[i];
             successes[[graphKeys[i], other]] = DONE;
             successes[[other, graphKeys[i]]] = DONE;
@@ -60,7 +61,7 @@ try {
 // Stockholm: 9900009
 
 const queries = [];
-const journeyOptions = {results: 1, transfers: 0, when: DEPARTURE_DATE};
+const journeyOptions = {results: 1, transfers: 1, when: DEPARTURE_DATE};
 for (let i = 0; i < stations.length; i++) {
     let from   = stations[i].station.name;
     let fromId = stations[i].station.id;
@@ -81,7 +82,7 @@ for (let i = 0; i < stations.length; i++) {
                     // Never repeat this query.
                     successes[[from, to]] = DONE;
                     console.log("Got response from interrail: ");
-                    console.log(res[0].legs[0].origin.name + " --> " + res[0].legs[0].destination.name);
+                    console.log(from + " --> " + to);
                     callback(null, {'from': from, 'to': to, 'res': res[0]});
                 }
                 else {
@@ -114,7 +115,7 @@ async.parallel(queries, (err, res) => {
     for (let i = 0; i < res.length; i++) {
         let from = res[i].from;
         let to   = res[i].to;
-        let trip = res[i].res.legs[0]; // We guarantee to only ever have one leg.
+        let trip = res[i].res.legs; // We guarantee to only ever have one leg.
         // Make the graph undirected: Same info in each edge.
         let node1 = graph[from];
         graph[from] = node1 ? node1 : [];

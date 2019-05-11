@@ -16,14 +16,14 @@ function dijkstraResToPath(res, from, to) {
   }
   let leg = { place: from, travelMins: 0 };
   path.push(leg);
-  path.reverse();
+  // path.reverse();
 
   // Modify so that every edge carries its weight, not total time taken.
-  let totalTime = 0;
-  path.forEach(leg => {
-    leg.travelMins -= totalTime;
-    totalTime += leg.travelMins;
-  });
+  // let totalTime = 0;
+  // path.forEach(leg => {
+  //   leg.travelMins -= totalTime;
+  //   totalTime += leg.travelMins;
+  // });
 
   return path;
   // => { A: { distance: 0 },
@@ -36,9 +36,9 @@ function dijkstraResToPath(res, from, to) {
 
 // Takes path like above, gives edges as length-2 lists.
 function pathToEdges(path) {
-  let edges = [];
+  const edges = [];
   for (let i = 0; i < path.length - 1; i++) {
-    let edge = [path[i]['place'], path[i + 1]['place']];
+    let edge = [path[i].place, path[i + 1].place];
     edges.push(edge);
   }
   return edges;
@@ -66,6 +66,8 @@ module.exports.initialSuggestions = (from, to, _travelGraph) => {
       eId => travelGraphCopy.edge(eId),
       nId => travelGraphCopy.nodeEdges(nId)
     );
+    // console.log(dijkstra);
+
     let suggestion;
     try {
       suggestion = dijkstraResToPath(dijkstra, from, to);
@@ -75,6 +77,7 @@ module.exports.initialSuggestions = (from, to, _travelGraph) => {
       continue;
     }
     const edges = pathToEdges(suggestion);
+
     edges.forEach(e => travelGraphCopy.removeEdge(e[0], e[1]));
     suggestions.push(suggestion);
   }

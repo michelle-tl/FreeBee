@@ -46,7 +46,14 @@ module.exports.initialSuggestions = (from, to, _travelGraph) => {
     const suggestions = [];
     for (let i = 0; i < NUM_SUGGESTIONS; i++) {
         const dijkstra = graphy.alg.dijkstra(travelGraphCopy, from, (eId => travelGraphCopy.edge(eId).minutes));
-        const suggestion = dijkstraResToPath(dijkstra, from, to);
+        let suggestion;
+        try {
+            suggestion = dijkstraResToPath(dijkstra, from, to);
+        } catch (err) {
+            console.error("Failed to generate suggestion");
+            console.error(err);
+            continue;
+        }
         const edges = pathToEdges(suggestion);
         edges.forEach(e => travelGraphCopy.removeEdge(e[0], e[1]));
         suggestions.push(suggestion);

@@ -10,3 +10,16 @@
     transform: rotate(360deg);
   }
 }
+
+.nav-header{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin: 0;
+  padding: 1em;
+  list-style-type: none;
+}
+
+.nav-header li{
+  padding: 0 3%;
+}

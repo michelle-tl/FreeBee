@@ -6,7 +6,8 @@ const baseGraph = JSON.parse(fs.readFileSync('./TrainGraph.json'));
 
 module.exports = {
   travelGraphOf,
-  acoGraphOf
+  acoGraphOf,
+  baseGraph
 };
 
 function acoGraphOf(baseGraph, basePheromoneLevel) {
@@ -18,9 +19,7 @@ function acoGraphOf(baseGraph, basePheromoneLevel) {
 
   // Set all edges with provided pheromone level
   Object.entries(baseGraph).forEach(([from, v]) => {
-    v.forEach(({ to }) =>
-      acoGraph.setEdge(from, to, basePheromoneLevel)
-    );
+    v.forEach(({ to }) => acoGraph.setEdge(from, to, basePheromoneLevel));
   });
 
   return acoGraph;
@@ -36,9 +35,13 @@ function travelGraphOf(baseGraph) {
   // Set all edges with travel times
   Object.entries(baseGraph).forEach(([from, v]) =>
     v.forEach(({ to, byTrip }) =>
-              travelGraph.setEdge(from, to, travelTimeOf(byTrip.departure, byTrip.arrival))
-             )
-                                   );
+      travelGraph.setEdge(
+        from,
+        to,
+        travelTimeOf(byTrip.departure, byTrip.arrival)
+      )
+    )
+  );
   return travelGraph;
 }
 

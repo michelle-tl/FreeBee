@@ -1,5 +1,6 @@
 const GRAPH_FILE_NAME = "TrainGraph.json";
 const SUCCESS_FILE_NAME = "PairSuccesses.json";
+const RETRY_RESULTLESS = false;
 
 const fs        = require('fs');
 const interrail = require('interrail');
@@ -15,6 +16,15 @@ const DEPARTURE_DATE = new Date("2019-06-10T10:30:00+02:00");
 
 // Load the existing graph: We want to extend it!
 const graph = JSON.parse(fs.readFileSync(GRAPH_FILE_NAME));
+
+// If necessary, add new stations to the graph.
+const stationIds = Object.values(stationsDict).map(c => c.station.id);
+// Initially empty lists.
+
+console.log("GRAPH: ")
+console.log(graph);
+
+// Record successful queries, so we don't need to redo them.
 var successes = {};
 
 const DONE = "done";
@@ -29,7 +39,12 @@ try {
     let graphKeys = Object.keys(graph);
     for (let i = 0; i < graphKeys.length; i++) {
         // Put all existing edges in successes file.
-        graph(graphKeys[i]).map(edge => succeses[[graphKeys[i], edge.byTrip.station.name]] = DONE);
+        graph[graphKeys[i]].map(edge => {
+            let trip = edge.byTrip;
+            let other = trip.origin.name == graphKeys[i] ? trip.destination.name : graphKeys[i];
+            successes[[graphKeys[i], other]] = DONE;
+            successes[[other, graphKeys[i]]] = DONE;
+        });
     }
 }
 
@@ -51,7 +66,7 @@ for (let i = 0; i < stations.length; i++) {
         // Skip already successful queries.
         if (successes[[from, to]] == DONE) continue;
         // Skip, but maybe extend later (with more dates, for example).
-        if (successes[[from, to]] == NO_RES) continue;
+        if (!RETRY_RESULTLESS && successes[[from, to]] == NO_RES) continue;
         // We allow previously failed queries to go through.
 
         queries.push(callback =>
@@ -60,7 +75,8 @@ for (let i = 0; i < stations.length; i++) {
                 if (res.length > 0) {
                     // Never repeat this query.
                     successes[[from, to]] = DONE;
-                    console.log(res[0]);
+                    console.log("Got response from interrail: ");
+                    console.log(res[0].legs[0].origin.name + " --> " + res[0].legs[0].destination.name);
                     callback(null, res[0]);
                 }
                 else {
@@ -83,25 +99,29 @@ for (let i = 0; i < stations.length; i++) {
 }
 
 async.parallel(queries, (err, res) => {
+    console.log("All search results: ");
     console.log(res);
     // Get rid of searches that gave no result.
     res = res.filter(s => s !== null);
 
-    // Produce a graph (adjacency list).
-    const stationNames = Object.keys(stationsDict);
-    // Initially empty lists.
-    for (let i = 0; i < stationNames.length; i++)
-        graph[stationNames[i]] = [];
-
     for (let i = 0; i < res.length; i++) {
         let trip = res[i].legs[0]; // We guarantee to only ever have one leg.
         // Make the graph undirected: Same info in each edge.
+        let node1 = graph[trip.origin.name];
+        graph[trip.origin.name] = node1 ? node1 : [];
         graph[trip.origin.name].push({'to': trip.destination.name, 'byTrip': trip});
+
+        let node2 = graph[trip.destination.name];
+        graph[trip.destination.name] = node2 ? node2 : [];
         graph[trip.destination.name].push({'to': trip.origin.name, 'byTrip': trip});
     }
     fs.writeFile(GRAPH_FILE_NAME, JSON.stringify(graph), err =>
-                 { if (err) console.log(err);
+                 { if (err) console.error(err);
                    else console.log("Saved graph file");
+                 });
+    fs.writeFile(SUCCESS_FILE_NAME, JSON.stringify(successes), err =>
+                 { if (err) console.error(err);
+                   else console.log("Saved successes file");
                  });
 });
 

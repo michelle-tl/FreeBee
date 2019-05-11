@@ -2,10 +2,10 @@ const graphy = require('@dagrejs/graphlib');
 
 const NUM_SUGGESTIONS = 3;
 // TODO: Tweak this.
-const PHEROMONE_ADD_AMOUNT = 0.2;
-const MAX_PHEROMONE = 1;
+const PHEROMONE_ADD_AMOUNT = 0.5;
+const MAX_PHEROMONE = 1.5;
 const MIN_PHEROMONE = 0.1;
-const EVAPORATION_RATE = 0.5;
+const EVAPORATION_RATE = 0.3;
 
 function dijkstraResToPath(res, from, to) {
   const path = [];

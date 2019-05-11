@@ -2,10 +2,10 @@ const graphy = require('@dagrejs/graphlib');
 
 const NUM_SUGGESTIONS = 3;
 // TODO: Tweak this.
-const PHEROMONE_ADD_AMOUNT = 0.5;
+const PHEROMONE_ADD_AMOUNT = 1.5;
 const MAX_PHEROMONE = 1.5;
-const MIN_PHEROMONE = 0.1;
-const EVAPORATION_RATE = 0.3;
+const MIN_PHEROMONE = 0.001;
+const EVAPORATION_RATE = 0.9;
 
 function dijkstraResToPath(res, from, to) {
   const path = [];
@@ -96,7 +96,9 @@ module.exports.getSuggestions = (
   preferencesMap
 ) => {
   let suggestions = [];
+  
   for (let i = 0; i < NUM_SUGGESTIONS; i++) {
+    
     let path = [{ place: from, travelMinutes: 0 }];
     let curr = from;
     let taboo = { from: true };
@@ -121,15 +123,17 @@ module.exports.getSuggestions = (
       let newPlace = pheromones[j - 1].e.w;
       let travelMins = travelGraph.edge(curr, newPlace);
       remainingTime -= travelMins;
-      if (remainingTime < 0) break;
+      // if (remainingTime < 0) break;
       taboo['newPlace'] = true;
       curr = newPlace;
       path.push({ place: curr, travelMins: travelMins });
     }
     if (curr != to) {
       // Means we ran out of time, redo the loop, find a new connection.
-      i--;
+      // i--;
     } else {
+      console.log("Stop");
+      
       // Add stays.
       // TODO: Use preference map.
       let slices = [];

@@ -9,13 +9,13 @@ import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 import './SearchQueries.css';
 
 const SearchQueries = (props) => {
-  console.log(props)  
-
+  console.log(props)
+//{props.query.cityFrom} -  {props.query.cityTo} 
   return (
     <div class="settings border-top-bottom">
           <Button variant="primary" >
-            {props.query.cityFrom} -  {props.query.cityTo} 
-          </Button>     
+
+          </Button>
         </div>
   );
 }

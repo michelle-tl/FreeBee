@@ -19,10 +19,7 @@ function acoGraphOf(baseGraph, basePheromoneLevel) {
   // Set all edges with provided pheromone level
   Object.entries(baseGraph).forEach(([from, v]) => {
     v.forEach(({ to }) =>
-      acoGraph.setEdge(from, to, {
-        label: `${from}-${to}`,
-        pheromone: basePheromoneLevel
-      })
+      acoGraph.setEdge(from, to, basePheromoneLevel)
     );
   });
 

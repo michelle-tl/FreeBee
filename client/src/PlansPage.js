@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import {Container, Row, Col} from 'react-bootstrap';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import './Plans.css';
+import SearchQueries from './SearchQueries.js';
 
 import axios from 'axios';
 //axios.defaults.withCredentials = true;
@@ -32,11 +33,7 @@ const Page_2 = (props) => {
 console.log(plans);
   return (
       <div class="plans-container">
-        <div class="settings border-top-bottom">
-          <Button variant="primary" >
-            {props.location.state.cityFrom} - {props.location.state.cityTo}
-            </Button>     
-        </div>
+        <SearchQueries></SearchQueries>
         <div>{plans}</div>
       </div>
   )

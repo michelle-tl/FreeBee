@@ -5,16 +5,13 @@ import './TravelItem.css';
 const TravelItem = (props) => {
 
   return (
-<div/>
+    <div className='travel-item'>
+    {props.place}
+
+    </div>
   )
 }
 
 export default TravelItem;
-
-/*
-<div className='travel-item'>
-</div>{props.place}
-<div class="card-header">
-<img src="yourpic.jpg" style=" width:100%; height:100%;">
-</div>
-*/
+//<img src="yourpic.jpg" style=" width:100%; height:100%;"/>
+//    <div className="card-header"></div>

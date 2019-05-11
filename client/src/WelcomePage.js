@@ -21,6 +21,7 @@ const Page_1 = () => {
 
   function handleCityToChange(event) {
     setCityTo(event.target.value)
+
   }
 
   function handleNbrTravellers(event) {
@@ -34,12 +35,8 @@ const Page_1 = () => {
 
   function handleEndDateChange(date){
     setEndDate(date);
-  }
 
-  function handleSubmit(event) {
-    alert('City From: ' + cityFrom);
-    event.preventDefault();
-}
+  }
 
   return (
     <div class="welcome-container">
@@ -48,12 +45,12 @@ const Page_1 = () => {
           <h2>Explore your next journey.</h2>
           <Form.Group className="form-input" controlId="formBasicFrom">
             <Form.Label>From</Form.Label>
-            <Form.Control placeholder="From where?" onChange={handleCityToChange}/>
+            <Form.Control placeholder="From where?" onChange={handleCityFromChange}/>
           </Form.Group>
 
           <Form.Group className="form-input"controlId="formBasicTo">
             <Form.Label>To</Form.Label>
-            <Form.Control placeholder="Where to?" onChange={handleCityFromChange}/>
+            <Form.Control placeholder="Where to?" onChange={handleCityToChange}/>
           </Form.Group>
           <div class="form-date">
           <Form.Group className="form-input" controlId="formBasicBeginning">
@@ -88,11 +85,11 @@ const Page_1 = () => {
               to={{
               pathname: "/page_2",
               state: { 
-                cityFrom: 'Gothenburg',
-                cityTo: 'Berlin',
-                startDate: '12-May-2019',
-                endDate: '11-Juni-2019',
-                nbrTravellers: '3',
+                cityFrom: cityFrom,
+                cityTo: cityTo,
+                startDate: startDate.toLocaleDateString("en-US"),
+                endDate: endDate.toLocaleDateString("en-US"),
+                nbrTravellers: nbrTravellers,
                 } // your data array of objects
               }}
               >Explore</Link>

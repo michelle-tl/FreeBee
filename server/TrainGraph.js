@@ -81,7 +81,7 @@ for (let i = 0; i < stations.length; i++) {
                     successes[[from, to]] = DONE;
                     console.log("Got response from interrail: ");
                     console.log(res[0].legs[0].origin.name + " --> " + res[0].legs[0].destination.name);
-                    callback(null, res[0]);
+                    callback(null, {'from': from, 'to': to, 'res': res[0]});
                 }
                 else {
                     successes[[from, to]] = NO_RES;
@@ -111,15 +111,17 @@ async.parallel(queries, (err, res) => {
     res = res.filter(s => s !== null);
 
     for (let i = 0; i < res.length; i++) {
-        let trip = res[i].legs[0]; // We guarantee to only ever have one leg.
+        let from = res[i].from;
+        let to   = res[i].to;
+        let trip = res[i].res.legs[0]; // We guarantee to only ever have one leg.
         // Make the graph undirected: Same info in each edge.
-        let node1 = graph[trip.origin.name];
-        graph[trip.origin.name] = node1 ? node1 : [];
-        graph[trip.origin.name].push({'to': trip.destination.name, 'byTrip': trip});
+        let node1 = graph[from];
+        graph[from] = node1 ? node1 : [];
+        graph[from].push({'to': to, 'byTrip': trip});
 
-        let node2 = graph[trip.destination.name];
-        graph[trip.destination.name] = node2 ? node2 : [];
-        graph[trip.destination.name].push({'to': trip.origin.name, 'byTrip': trip});
+        let node2 = graph[to];
+        graph[to] = node2 ? node2 : [];
+        graph[to].push({'to': from, 'byTrip': trip});
     }
     fs.writeFile(GRAPH_FILE_NAME, JSON.stringify(graph), err =>
                  { if (err) console.error(err);

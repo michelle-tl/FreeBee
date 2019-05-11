@@ -98,7 +98,7 @@ module.exports.getSuggestions = (
     let taboo = { from: true };
     let remainingTime = timeMinutes;
     while (curr != to) {
-      let edges = acoGraph.nodeEdges(curr).filter(e => !taboo[e]);
+      let edges = acoGraph.nodeEdges(curr).filter(e => !taboo[e.w]);
       let pheromones = edges.map(e => ({
         ph: acoGraph.edge(e),
         e: e
@@ -109,7 +109,7 @@ module.exports.getSuggestions = (
         .reduce((a, b) => a + b, 0);
       let probAcc = 0;
       let rand = Math.random();
-      let j = 0;
+      let j = 1;
       while (rand >= probAcc) {
         probAcc += pheromones[j].ph / totalPheromones;
         j++;
@@ -118,6 +118,7 @@ module.exports.getSuggestions = (
       let travelMins = travelGraph.edge(curr, newPlace);
       remainingTime -= travelMins;
       if (remainingTime < 0) break;
+      taboo['newPlace'] = true;
       curr = newPlace;
       path.push({ place: curr, travelMins: travelMins });
     }

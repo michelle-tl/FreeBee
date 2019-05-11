@@ -29,13 +29,14 @@ const Page_2 = (props) => {
        fetchData();
      }, []);
 
+// {props.location.state.cityFrom} - {props.location.state.cityTo}
 console.log(plans);
   return (
       <div class="plans-container">
         <div class="settings border-top-bottom">
           <Button variant="primary" >
-            {props.location.state.cityFrom} - {props.location.state.cityTo}
-            </Button>     
+
+            </Button>
         </div>
         <div>{plans}</div>
       </div>

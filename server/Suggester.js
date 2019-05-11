@@ -100,7 +100,7 @@ module.exports.getSuggestions = (
     while (curr != to) {
       let edges = acoGraph.nodeEdges(curr).filter(e => !taboo[e]);
       let pheromones = edges.map(e => ({
-        ph: acoGraph.edge(e).pheromone,
+        ph: acoGraph.edge(e),
         e: e
       }));
       pheromones.sort((o1, o2) => o1.ph - o2.ph);
@@ -115,7 +115,7 @@ module.exports.getSuggestions = (
         j++;
       }
       let newPlace = pheromones[j - 1].e.w;
-      let travelMins = travelGraph.edge(curr, newPlace).timeMinutes;
+      let travelMins = travelGraph.edge(curr, newPlace);
       remainingTime -= travelMins;
       if (remainingTime < 0) break;
       curr = newPlace;

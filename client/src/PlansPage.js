@@ -21,7 +21,7 @@ const Page_2 = (props) => {
              `http://localhost:5000/initiate`,
          );*/
          const initUrl = `http://localhost:5000/initiate`;
-         const data = {from:'Stockholm', to:'Gothenburg'};
+         const data = {from:'LONDON (United Kingdom)', to:'BARCELONA CITY (Spain)'};
          const res = await axios.post(initUrl, data)
 
          const res_plans = res.data.plans;
@@ -67,14 +67,24 @@ const NewSearchComponent = () =>{
 const SuggestionsComponent = (props) => {
 
     if (props.plans) {
-        console.log(props.plans.res_plans);
-        const thePlans = props.plans.res_plans;
+        var plan_0 = props.plans.res_plans[0];
+        var plan_1 = props.plans.res_plans[1];
+        var plan_2 = props.plans.res_plans[2];
 
-        const items = []
-
-        for (const [index, value] of thePlans.entries()) {
-          items.push(<li key={index}>{value.place}</li>)
+        console.log(plan_0);
+        const items_0 = []
+        for (const [index, value] of plan_0.entries()) {
+          items_0.push(<li key={index}>{value.place}</li>)
         }
+        const items_1 = []
+        for (const [index, value] of plan_1.entries()) {
+          items_1.push(<li key={index}>{value.place}</li>)
+        }
+        const items_2 = []
+        for (const [index, value] of plan_2.entries()) {
+          items_2.push(<li key={index}>{value.place}</li>)
+        }
+
         return (
       <div class="Suggestions">
       <Row>
@@ -82,13 +92,9 @@ const SuggestionsComponent = (props) => {
       </Row>
       <div>
         <Row>
-        <Col></Col>
-        <Col></Col>
-        <Col>
-            <ul>
-            {items}
-            </ul>
-        </Col>
+        <Col><ul>{items_0}</ul></Col>
+        <Col><ul>{items_1}</ul></Col>
+        <Col><ul>{items_2}</ul></Col>
         </Row>
       </div>
     </div>

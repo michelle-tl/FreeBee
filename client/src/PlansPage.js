@@ -36,34 +36,54 @@ console.log(plans);
       <div class="plans-container">
         <SearchQueries query={props.location.state}></SearchQueries>
         <Container>
-          <Row className='primar-color'>
-            <h1>Some awsome travel plans.</h1>
-          </Row>
-          <Row >
-            <h4>Are you ready for your adventure?!</h4>
-          </Row>
-          <Row>
-            <NewSearchComponent/>
-          </Row>
-          <Row>
-            <div> So this is your cup of tea? We have more that came from! </div>
-          </Row>
-          <Row>
-          <Col>1 of 3</Col>
-          <Col>2 of 3</Col>
-          <Col>3 of 3</Col>
-          </Row>
+          <TitleComponent/>
+          <NewSearchComponent/>
+          <SuggestionsComponent/>
         </Container>
+    </div>
+  )
+}
+
+const TitleComponent = () =>{
+  return(
+    <div class="Title">
+      <Row className='primar-color'>
+        <h1>Some awsome travel plans.</h1>
+      </Row>
+      <Row >
+        <h4>Are you ready for your adventure?!</h4>
+      </Row>
     </div>
   )
 }
 
 const NewSearchComponent = () =>{
     return(
-    <div className='ml-auto mr-3'>text with button -- right
-    <Button className='button-primary-color'>Give me more!</Button>
+    <div class="NewSearch">
+      <Row>
+        <div className='ml-auto mr-3'>text with button -- right
+        <Button className='button-primary-color'>Give me more!</Button>
+        </div>
+      </Row>
     </div>
     )
+}
+
+const SuggestionsComponent = () => {
+  return (
+    <div class="Suggestions">
+    <Row>
+      <div> So this is your cup of tea? We have more that came from! </div>
+    </Row>
+    <div>
+      <Row>
+      <Col>1 of 3</Col>
+      <Col>2 of 3</Col>
+      <Col>3 of 3</Col>
+      </Row>
+    </div>
+  </div>
+  )
 }
 /*
 <div>Plans page

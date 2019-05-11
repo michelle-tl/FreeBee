@@ -30,28 +30,40 @@ const Page_2 = (props) => {
        fetchData();
      }, []);
 
+// {props.location.state.cityFrom} - {props.location.state.cityTo}
 console.log(plans);
   return (
       <div class="plans-container">
-        <SearchQueries query={props.location.state}></SearchQueries>
-        <div>{plans}</div>
-      </div>
+        <SearchQueries></SearchQueries>
+        <Container>
+          <Row>
+            <h1>Some awsome travel plans.</h1>
+          </Row>
+          <Row>
+            <h4>Are you ready for your adventure?!</h4>
+          </Row>
+          <Row>
+            <NewSearchComponent/>
+          </Row>
+          <Row>
+            <div> So this is your cup of tea? We have more that came from! </div>
+          </Row>
+          <Row>
+          <Col>1 of 3</Col>
+          <Col>2 of 3</Col>
+          <Col>3 of 3</Col>
+          </Row>
+        </Container>
+    </div>
   )
-  /*
-  <Container>
-<Row>
-<Col>1 of 2</Col>
-<Col>2 of 2</Col>
-</Row>
-<Row>
-<Col>1 of 3</Col>
-<Col>2 of 3</Col>
-<Col>3 of 3</Col>
-</Row>
-</Container>
-*/
+
 }
 
+const NewSearchComponent = () =>{
+    return(
+    <div>text with button -- right</div>
+    )
+}
 /*
 <div>Plans page
   <Button variant="primary">

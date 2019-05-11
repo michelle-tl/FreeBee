@@ -1,8 +1,12 @@
 import React, { useState, useEffect }  from 'react';
+import Button from 'react-bootstrap/Button';
 import {Container, Row, Col} from 'react-bootstrap';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import './Plans.css';
+
 import axios from 'axios';
 axios.defaults.withCredentials = true;
+
 
 const Page_2 = (props) => {
   // Declare a new state variable, which we'll call "count"
@@ -24,7 +28,14 @@ const Page_2 = (props) => {
 
 console.log(plans);
   return (
-      <div>{plans}</div>
+      <div class="plans-container">
+        <div class="settings border-top-bottom">
+          <Button variant="primary" >
+            {props.location.state.cityFrom} - {props.location.state.cityTo}
+            </Button>     
+        </div>
+        <div>{plans}</div>
+      </div>
   )
   /*
   <Container>

@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
+
+let acoGraph;
 const {
   initialSuggestions,
   updateGraphs,
@@ -18,10 +20,10 @@ router.post('/initiate', (req, res) => {
 
   if (from && to) {
     const travelGraph = travelGraphOf(baseGraph);
-
+    acoGraph = acoGraphOf(baseGraph, 0.5)
     const plans = initialSuggestions(from, to, travelGraph);
     res.json({
-      graph: acoGraphOf(baseGraph, 0.5),
+      // graph: acoGraph,
       plans,
       departure,
       arrival
@@ -40,21 +42,22 @@ router.post('/iterate', (req, res) => {
   const timeMinutes = plan.map(trip => trip.travelMins).reduce((a, b) => a + b, 0);
   const travelGraph = travelGraphOf(baseGraph);
 
-  updateGraphs(plan, graph, null);
+  updateGraphs(plan, acoGraph, null);
   const suggestions = getSuggestions(
     from,
     to,
     timeMinutes,
     travelGraph,
-    graph,
+    acoGraph,
     null
   );
   res.json({
     plans: suggestions,
-    graph,
+    // graph,
     departure,
     arrival
   });
 });
+
 
 module.exports = router;

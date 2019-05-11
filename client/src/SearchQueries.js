@@ -13,8 +13,11 @@ const SearchQueries = (props) => {
 
   return (
     <div class="settings border-top-bottom">
-          <Button variant="primary" >
+          <Button variant="primary" className="button-primary-color">
             {props.query.cityFrom} -  {props.query.cityTo} 
+          </Button> 
+          <Button variant="primary" className="button-primary-color">
+            {props.query.startDate} -  {props.query.endDate} 
           </Button>     
         </div>
   );

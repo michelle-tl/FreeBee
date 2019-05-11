@@ -17,3 +17,7 @@
 .settings .btn-primary{
   font-size: 15px;
 }
+
+.settings button{
+  margin-right: 10px;
+}

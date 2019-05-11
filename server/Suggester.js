@@ -41,6 +41,18 @@ function pathToEdges(path) {
     return edges;
 }
 
+// Produce (at most) NUM_SUGGESTIONS suggested paths, all different.
+// Paths have the shape:
+// [
+//   [ { place: 'Goteborg', travelMins: 0 },
+//     { place: 'Stockholm', travelMins: 200 } ],
+//   [ { place: 'Goteborg', travelMins: 0 },
+//     { place: 'Jonkoping', travelMins: 70 },
+//     { place: 'Stockholm', travelMins: 150 } ],
+//   [ { place: 'Goteborg', travelMins: 0 },
+//     { place: 'Orebro', travelMins: 1000 },
+//     { place: 'Stockholm', travelMins: 10 } ]
+// ]
 module.exports.initialSuggestions = (from, to, _travelGraph) => {
     const travelGraphCopy = graphy.json.read((graphy.json.write(_travelGraph)));
     const suggestions = [];
@@ -60,3 +72,6 @@ module.exports.initialSuggestions = (from, to, _travelGraph) => {
     }
     return suggestions;
 };
+
+
+module.exports.iterateSuggestions = (chosenPath, )

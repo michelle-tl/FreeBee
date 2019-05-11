@@ -40,6 +40,9 @@ console.log(plans);
           <TitleComponent/>
           <NewSearchComponent/>
           <SuggestionsComponent plans={plans}/>
+          <Button variant="secondary">
+            <a href='/page_3'>Next Page</a>
+            </Button>
         </Container>
     </div>
   )
@@ -66,6 +69,7 @@ const NewSearchComponent = () =>{
 
 const SuggestionsComponent = (props) => {
 
+    console.log(props.plans);
     if (props.plans) {
         var plan_0 = props.plans.res_plans[0];
         var plan_1 = props.plans.res_plans[1];
@@ -86,23 +90,36 @@ const SuggestionsComponent = (props) => {
         }
 
         return (
-      <div class="Suggestions">
-      <Row>
-        <div> So this is your cup of tea? We have more that came from! </div>
-      </Row>
-      <div>
-        <Row>
-        <Col><ul>{items_0}</ul></Col>
-        <Col><ul>{items_1}</ul></Col>
-        <Col><ul>{items_2}</ul></Col>
-        </Row>
-      </div>
-    </div>
-    );
-}
-return <div/>;
+            <div class="Suggestions">
+            <Row>
+              <div class="Sug-Title">So this is your cup of tea? </div>
+              <div class="Sug-Title">We have more that came from! </div>
+            </Row>
 
+            <div class="Sugg-List">
+
+                  <Row>
+                  <Col>
+                    <Button size="sm">Explore similar</Button>
+                    <div><ul>{items_0}</ul></div>
+                  </Col>
+                  <Col>
+                    <Button size="sm">Explore similar</Button>
+                    <div><ul>{items_1}</ul></div>
+                  </Col>
+                  <Col>
+                    <Button size="sm">Explore similar</Button>
+                    <div><ul>{items_2}</ul></div>
+                  </Col>
+                  </Row>
+            </div>
+          </div>
+    );
+    }else{
+        return <div/>
+    }
 }
+
 /*
 
 {thePlans.map((currentPlan, index) => {

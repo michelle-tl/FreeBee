@@ -50,6 +50,10 @@
   align-self: flex-end;
 }
 
+.form .btn-primary a{
+  color: white;
+  text-decoration: none;
+}
 .form .btn-primary:hover{
   background-color: #fec356 !important;
   border-color: #fec356 !important;

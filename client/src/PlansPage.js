@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import axios from 'axios';
 
 
-const Page_2 = () => {
+const Page_2 = (props) => {
   // Declare a new state variable, which we'll call "count"
   const [plans, setPlans] = useState([]);
   const [selectedPlan, setSelectedPlan] = useState(undefined);
@@ -30,6 +30,11 @@ const Page_2 = () => {
     <Col>2 of 3</Col>
     <Col>3 of 3</Col>
   </Row>
+  <div>PlansPage page. Data from 1: {props.location.state.cityFrom}</div>
+  <div>PlansPage page. Data from 1: {props.location.state.cityTo}</div>
+  <div>PlansPage page. Data from 1: {props.location.state.startDate}</div>
+  <div>PlansPage page. Data from 1: {props.location.state.endDate}</div>
+  <div>PlansPage page. Data from 1: {props.location.state.nbrTravellers}</div>
 </Container>
   )
 }

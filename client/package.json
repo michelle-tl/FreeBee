@@ -6,6 +6,7 @@
   "dependencies": {
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-router-dom": "^5.0.0",
     "react-scripts": "3.0.0"
   },
   "scripts": {
@@ -13,7 +14,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "startAll": "concurrently \"cd .. && cd server && npm run start\" \"npm run start\""  },
+    "startAll": "concurrently \"cd .. && cd server && npm run start\" \"npm run start\""
+  },
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -28,5 +30,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "concurrently": "^4.1.0"
   }
 }

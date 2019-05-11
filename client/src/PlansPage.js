@@ -35,19 +35,17 @@ const Page_2 = (props) => {
 
   // handler for button -- fetches new plans
   const handleIteration = (e, plan) => {
-      console.log('plan');
-      console.log(plan);
-      console.log('graph');
-      console.log(graph);
 
       const fetchNewPlans = async () => {
+          console.log('in iterator');
 
         const initUrl = `http://localhost:5000/iterate`;
-        const data = {graph: graph.res_graph, plan: plan};
-        const res = await axios.post(initUrl, data)
+        const data = {plan: plan}; //graph: graph.res_graph,
+        const res = await axios.post(initUrl, data);
 
          const res_plans = res.data.plans;
          const res_graph = res.data.graph;
+         console.log(res_graph);
          setPlans({res_plans});
          setGraph({res_graph});
     };
@@ -69,11 +67,11 @@ const Page_2 = (props) => {
           }
           const items_1 = []
           for (const [index, value] of plan_1.entries()) {
-            items_1.push(<li key={index}>{value.place}</li>)
+            items_1.push(<TravelItem place={value.place}/>)
           }
           const items_2 = []
           for (const [index, value] of plan_2.entries()) {
-            items_2.push(<li key={index}>{value.place}</li>)
+            items_2.push(<TravelItem place={value.place}/>)
           }
 
           return (

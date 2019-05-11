@@ -30,3 +30,12 @@
 .nav-header li{
   padding: 0 3%;
 }
+
+.button-primary-color{
+  background-color: #FFA500 !important;
+  border-color: #FFA500 !important;
+}
+
+.more-alternatives-component{
+    float: right;
+}

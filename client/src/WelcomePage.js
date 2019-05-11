@@ -88,11 +88,11 @@ const Page_1 = () => {
               to={{
               pathname: "/page_2",
               state: { 
-                cityFrom: '123',
-                cityTo: 'cityFrom',
+                cityFrom: 'Gothenburg',
+                cityTo: 'Berlin',
                 startDate: '12-May-2019',
                 endDate: '11-Juni-2019',
-                nbrTravellers: '10000',
+                nbrTravellers: '3',
                 } // your data array of objects
               }}
               >Explore</Link>

@@ -6,16 +6,16 @@ import DatePicker from "react-datepicker";
 import { Link } from "react-router-dom";
 import "react-datepicker/dist/react-datepicker.css";
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
-import './Plans.css';
+import './SearchQueries.css';
 
-const SearchQueries = () => {
-  
+const SearchQueries = (props) => {
+  console.log(props)  
 
   return (
     <div class="settings border-top-bottom">
-          <Button variant="primary" >Test
-            {/* {props.location.state.cityFrom} - {props.location.state.cityTo} */}
-            </Button>     
+          <Button variant="primary" >
+            {props.query.cityFrom} -  {props.query.cityTo} 
+          </Button>     
         </div>
   );
 }

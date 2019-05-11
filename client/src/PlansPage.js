@@ -67,13 +67,23 @@ const SuggestionsComponent = () => {
   return (
     <div class="Suggestions">
     <Row>
-      <div> So this is your cup of tea? We have more that came from! </div>
+      <div class="Sug-Title">So this is your cup of tea? </div>
+      <div class="Sug-Title">We have more that came from! </div>
     </Row>
-    <div>
+    <div class="Sugg-List">
       <Row>
-      <Col>1 of 3</Col>
-      <Col>2 of 3</Col>
-      <Col>3 of 3</Col>
+      <Col>      
+        <Button size="sm">Explore similar</Button>
+        <div>1 out of 3</div>
+      </Col>
+      <Col>      
+        <Button size="sm">Explore similar</Button>
+        <div>2 out of 3</div>
+      </Col>
+      <Col>      
+        <Button size="sm">Explore similar</Button>
+        <div>3 out of 3</div>
+      </Col>
       </Row>
     </div>
   </div>

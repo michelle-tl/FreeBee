@@ -20,3 +20,16 @@
   margin: 10px 5px;
   border-radius: 50px;
 }
+
+.Suggestions .Sug-Title{
+  width: 100%;
+  text-align: left;
+}
+
+.Sugg-List{
+  margin: 3% 0;
+}
+
+.Sugg-List button{
+  background-colour: #009FFD;
+}

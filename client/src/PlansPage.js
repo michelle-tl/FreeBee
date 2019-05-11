@@ -34,7 +34,7 @@ const Page_2 = (props) => {
 console.log(plans);
   return (
       <div class="plans-container">
-        <SearchQueries></SearchQueries>
+        <SearchQueries query={props.location.state}></SearchQueries>
         <Container>
           <Row>
             <h1>Some awsome travel plans.</h1>

@@ -2,12 +2,16 @@ const graphlib = require('@dagrejs/graphlib');
 const Graph = graphlib.Graph;
 const fs = require('fs');
 
+// Köpenhamn, Bryssel, Paris, Barcelona
+//
+
 const baseGraph = JSON.parse(fs.readFileSync('./TrainGraph.json'));
 
 module.exports = {
   travelGraphOf,
   acoGraphOf,
-  baseGraph
+  baseGraph,
+  travelTimeOf
 };
 
 function acoGraphOf(baseGraph, basePheromoneLevel) {
@@ -16,12 +20,9 @@ function acoGraphOf(baseGraph, basePheromoneLevel) {
     compound: false,
     multigraph: false
   });
-
-  // Set all edges with provided pheromone level
   Object.entries(baseGraph).forEach(([from, v]) => {
     v.forEach(({ to }) => acoGraph.setEdge(from, to, basePheromoneLevel));
-  });
-
+  })
   return acoGraph;
 }
 
@@ -32,18 +33,26 @@ function travelGraphOf(baseGraph) {
     multigraph: false
   });
 
-  // Set all edges with travel times
   Object.entries(baseGraph).forEach(([from, v]) =>
-    v.forEach(({ to, byTrip }) =>
+  v.forEach(({ to, byTrip }) => {
+    let departure, arrival;
+    if (byTrip.length) {
+      departure = byTrip[0].departure;
+      arrival = byTrip[byTrip.length-1].arrival;
+    } else {
+      departure = byTrip.departure;
+      arrival = byTrip.arrival;
+    }
       travelGraph.setEdge(
         from,
         to,
-        travelTimeOf(byTrip.departure, byTrip.arrival)
-      )
-    )
+        travelTimeOf(departure, arrival)
+      );
+    })
   );
   return travelGraph;
 }
+
 
 function travelTimeOf(departure, arrival) {
   const departureDate = new Date(departure);

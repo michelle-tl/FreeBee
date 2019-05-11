@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import axios from 'axios';
 //axios.defaults.withCredentials = true;
 
-const Page_2 = () => {
+const Page_2 = (props) => {
   // Declare a new state variable, which we'll call "count"
   const [plans, setPlans] = useState();
   const [selectedPlan, setSelectedPlan] = useState(undefined);

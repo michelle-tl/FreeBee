@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import './Welcome.css';
 import DatePicker from "react-datepicker";
 import { Link } from "react-router-dom";
 import "react-datepicker/dist/react-datepicker.css";
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 
+import './Welcome.css';
+
 const Page_1 = () => {
-  // Declare a new state variable, which we'll call "count"
   const [cityFrom, setCityFrom] = useState(0);
   const [cityTo, setCityTo] = useState(0);
   const [nbrTravellers, setNbrTravellers] = useState(0);
@@ -28,7 +28,7 @@ const Page_1 = () => {
     setNbrTravellers(event.target.value)
   }
 
-  
+
   function handleStartDateChange(date){
     setStartDate(date);
   }
@@ -84,16 +84,16 @@ const Page_1 = () => {
             <Link
               to={{
               pathname: "/page_2",
-              state: { 
+              state: {
                 cityFrom: 'Barcelona',
                 cityTo: 'London',
                 startDate: startDate.toLocaleDateString("en-US"),
                 endDate: endDate.toLocaleDateString("en-US"),
                 nbrTravellers: nbrTravellers,
-                } // your data array of objects
+                }
               }}
               >Explore</Link>
-          </Button>     
+          </Button>
         </Form>
       </div>
     </div>

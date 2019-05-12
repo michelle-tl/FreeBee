@@ -2,15 +2,15 @@ import React, { useState, useEffect }  from 'react';
 import Button from 'react-bootstrap/Button';
 import {Container, Row, Col} from 'react-bootstrap';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import axios from 'axios';
+
 import './Plans.css';
 import SearchQueries from './SearchQueries.js';
 import TravelItem from './TravelItem'
-import axios from 'axios';
 
 const Page_2 = (props) => {
-  // Declare a new state variable, which we'll call "count"
   const [plans, setPlans] = useState();
-  const [selectedPlan, setSelectedPlan] = useState(undefined);
+  //const [selectedPlan, setSelectedPlan] = useState(undefined);
   const [graph, setGraph] = useState(undefined);
 
 
@@ -137,26 +137,5 @@ const Page_2 = (props) => {
     </div>
   )
 }
-
-
-/*
-
-{thePlans.map((currentPlan, index) => {
-  return <li><TravelItem plan={currentPlan}/></li>
-})}
-*/
-
-/*
-<div>Plans page
-  <Button variant="primary">
-  <Link
-      to={{
-      pathname: "/page_3",
-      state: {plan: 'paris'} // your data array of objects
-      }}
-      >Buy</Link>
-  </Button>
-</div>
-*/
 
 export default Page_2;
